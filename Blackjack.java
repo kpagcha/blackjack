@@ -523,12 +523,14 @@ public class Blackjack {
 		p("\nDealer dealing cards...\n");
 
 		for (int i = 0; i < 2*players.size(); i++) {
+			feedDeckIfEmpty();
 			Card card = deck.draw();
 			Player player = players.get(i % players.size());
 			player.hand().add(card);
 			p(player + " gets " + card);
 	
 			if ((i + 1) % players.size() == 0) {
+				feedDeckIfEmpty();
 				card = deck.draw();
 				if (i + 1 == players.size()) {
 					p(dealer + " gets " + card);
@@ -601,17 +603,6 @@ public class Blackjack {
 				return second;
 			} else if (second > 21) {
 				return first;
-			// } else {
-			// 	int val = 0;
-			// 	do {
-			// 		pnln("Choose value, " + first + " or " + second + ": ");
-			// 		val = in.nextInt();
-			// 		if (!(val == first || val == second)) {
-			// 			p("Incorrect value.");
-			// 		}
-			// 	} while (!(val == first || val == second));
-			// 	return val;
-			// }
 			} else if (first >= second) {
 				return first;
 			} else {
