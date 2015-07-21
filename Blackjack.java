@@ -734,7 +734,6 @@ public class Blackjack {
 					player.setMoney(player.getMoney() + bet);
 					p("Both dealer and " + player + " have blackjacks, which results in a push. Player gets back " + bet + ".");
 				} else {
-					player.setMoney(player.getMoney() - bet);
 					p("The dealer has blackjack, " + player + " loses bet (" + bet + ").");
 				}
 			} else if (player.hasBlackjack()) {
