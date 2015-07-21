@@ -836,6 +836,7 @@ public class Blackjack {
 
 							switch(play) {
 								case HIT:
+									feedDeckIfEmpty();
 									Card card = deck.draw();
 									p(player + " draws " + card + ".");
 									player_hand.add(card);
