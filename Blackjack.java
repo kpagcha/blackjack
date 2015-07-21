@@ -749,9 +749,12 @@ public class Blackjack {
 			} else if (handValue(player.hand()) > handValue(dealer.hand())) {
 				p(player + " has a higher scoring hand (" + handValue(player.hand()) + ") than dealer's " + handValue(dealer.hand()) + " , player gets paid at 1:1, winning " + 2*bet + ".");
 				player.setMoney(player.getMoney() + 2*bet);
-			} else {
+			} else if (handValue(player.hand()) < handValue(dealer.hand())) {
 				p(player + " has a lower scoring hand (" + handValue(player.hand()) + ") than dealer's " + handValue(dealer.hand()) + " , player loses bet, " + bet + ".");
 				player.setMoney(player.getMoney() - bet);
+			} else {
+				p(player + " has a the same scoring hand (" + handValue(player.hand()) + ") than dealer's " + handValue(dealer.hand()) + " , gets bet back, " + bet + ".");
+				player.setMoney(player.getMoney() + bet);
 			}
 
 			p(player + "'s current money: " + player.getMoney() + "\n");
@@ -856,8 +859,6 @@ public class Blackjack {
 							}
 
 							if (player.isPlaying()) {
-								// choose rank innecesario en algunos casos (handValue)
-								// controlar no elegir as=11 que se pase y el jugador acaba busted
 								int hand_value = handValue(player_hand);
 								if (hand_value > 21) {
 									player.busted();
@@ -930,10 +931,8 @@ public class Blackjack {
 
 		Player player1, player2, player3;
 		player1 = new Player("Player 1", 500);
-		player2 = new Player("Player 2", 650);
-		player3 = new Player("Player 3", 230);
 
-		Player[] players = { player1, player2, player3 };
+		Player[] players = { player1 };
 		Deck deck = new Deck();
 	
 		Blackjack blackjack = new Blackjack(players, deck);
