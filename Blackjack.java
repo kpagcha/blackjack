@@ -742,16 +742,16 @@ public class Blackjack {
 				player.setMoney(player.getMoney() + win);
 				p(player + " has blackjack, gets paid at 3:2, winning " + win + ".");
 			} else if (player.isBusted()) {
-				p(player + " got busted, loses bet ( " + bet + ").");
+				p(player + " got busted, loses bet (" + bet + ").");
 			} else if (dealer.isBusted()) {
-				p("Dealer got busted, player gets paid at 1:1, winning " + bet + ".");
-				player.setMoney(player.getMoney() + bet);
+				p("Dealer got busted, player gets paid at 1:1, winning " + 2*bet + ".");
+				player.setMoney(player.getMoney() + 2*bet);
 			} else if (handValue(player.hand()) > handValue(dealer.hand())) {
-				p(player + " has a higher scoring hand (" + handValue(player.hand()) + ") than dealer's " + handValue(dealer.hand()) + " , player gets paid at 1:1, winning " + bet + ".");
-				player.setMoney(player.getMoney() + bet);
+				p(player + " has a higher scoring hand (" + handValue(player.hand()) + ") than dealer's " + handValue(dealer.hand()) + " , player gets paid at 1:1, winning " + 2*bet + ".");
+				player.setMoney(player.getMoney() + 2*bet);
 			} else {
 				p(player + " has a lower scoring hand (" + handValue(player.hand()) + ") than dealer's " + handValue(dealer.hand()) + " , player loses bet, " + bet + ".");
-				player.setMoney(player.getMoney() + bet);
+				player.setMoney(player.getMoney() - bet);
 			}
 
 			p(player + "'s current money: " + player.getMoney() + "\n");
